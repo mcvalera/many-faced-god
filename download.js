@@ -3,6 +3,7 @@
 var request = require('request');
 var async = require('async');
 var _ = require('lodash');
+var knex = require('knex');
 
 var headers = {
 	cookie: '__cfduid=d1effd6900a24380b69c89e7b32b97df01463208405; cf_clearance=60e051bf9aa122bbbfabac9e3de77877b99e0162-1463285492-3600; _gat=1; _ga=GA1.2.1085818165.1463208410', 
@@ -50,7 +51,7 @@ var votesQ = async.queue(function(url, callback) {
 		json: true,
 		headers: headers
 	}, function(error, response, body) {
-		
+
 		callback();
 
 	});
