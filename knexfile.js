@@ -2,46 +2,12 @@
 
 module.exports = {
 
-  development: {
-    client: 'postgresql',
-    connection: {
-      database: 'many_faced_god'
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+  client: 'postgresql',
+  connection: {
+    database: 'many_faced_god'
   },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+  migrations: {
+    tableName: 'knex_migrations'
   }
 
 };
