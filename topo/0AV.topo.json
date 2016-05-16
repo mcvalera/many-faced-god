@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="psPhl">
+<head>
+	<base href="/" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- meta name="description" th:content=""/-->
+	<!-- meta name="keywords" th:content=""/-->
+	<!-- meta name="author" th:content=""/-->
+	<title>Election - Philippines 2016</title>
+
+	<style type="text/css" xml:space="preserve">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {display: none !important;}</style>
+	<link rel="icon" type="image/png" href="styles/images/icon.png" sizes="16x16" />
+	<link rel="stylesheet" type="text/css" href="styles/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="styles/baseTemplate.css" />
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap-column-height.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" />
+</head>
+<body ng-controller="psPhlCtrlr" ng-init="initApp()">
+
+	<header>
+		<div class="container-fluid" style="background-color: #FFF;">
+			<div class="page-header borderless row">
+				<a href="http://www.comelec.gov.ph" class="hidden-xs" shape="rect">
+					<img class="img-responsive pull-left" src="styles/images/logo_institution.png" alt="COMELEC Logo" title="COMELEC Logo" />
+				</a>
+				<a href="http://www.comelec.gov.ph" class="pull-left visible-xs-inline-block" shape="rect">
+					<img class="img-responsive" src="styles/images/logo_institution_xs.png" alt="COMELEC Logo" title="COMELEC Logo" />
+				</a>
+				<span class="vertical-divider pull-left"></span>
+				<img class="img-responsive pull-left" src="styles/images/logo_event.png" alt="Pilipinas Logo" title="Pilipinas Logo" />
+<!--
+ 				<img class="img-responsive pull-left visible-xs-inline-block" src="styles/images/logo_event_xs.png" alt=""/>
+ -->
+
+				<span class="vertical-divider pull-left visible-xs-inline"></span>
+				<img class="img-responsive pull-right hidden-xs" src="styles/images/logo_SMTT.png" alt="Smartmatic logo" title="Smartmatic Logo" />
+				<img class="img-responsive pull-right visible-xs-inline-block" src="styles/images/logo_SMTT_xs.png" alt="Smartmatic logo" title="Smartmatic Logo" />
+			</div>
+			<div class="row election-name-backgroud">
+				<div style="margin-left: 5px; margin-right: 5px;">
+						<div class="election-name-text smtt-h6 col-xs-12 col-md-6 text-left">
+						<span class="election-name">2016 National and Local Elections</span>
+					</div>
+					<div class="current-date-time col-xs-12 col-md-6 text-right">
+						<span>Current date and time: </span>
+						<span class="clock-time">
+							<span class="report-date current-date">DD MMM YYYY</span>
+							<span class="current-time">6:11 pm</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="row nav-buttons-section">
+				<div class="tab-buttons-section col-xs-12 col-md-7 no-side-padding" style="position:relative;">
+					<span>
+						<a class="nav-button home-section-label" ui-sref="dashboard" ui-sref-active="active" shape="rect">
+							<img class="nav-button-precincts-icon" alt="Home" title="Home" src="styles/images/home.png" />
+							<span class="hidden-xs ng-cloak">Home</span>
+						</a>
+					</span>
+					<span>
+						<a class="nav-button" ui-sref="er" ui-sref-active="active" shape="rect">
+							<img class="nav-button-precincts-icon" alt="PCOS" title="{{&#39;nav.button.er.label&#39; | translate}}" src="styles/images/pcos.png" />
+							<span class="nav-button-precincts-label hidden-xs">
+								Information<br /> based on ER
+							</span>
+							<span class="nav-button-precincts-label visible-xs-inline ng-cloak">ER</span>
+						</a>
+					</span>
+					<span>
+						<a class="nav-button" ui-sref="coc" ui-sref-active="active" shape="rect">
+							<img class="nav-button-boc-icon" alt="CoC" title="{{&#39;nav.button.coc.label&#39; | translate}}" src="styles/images/CoC.png" />
+							<span class="nav-button-boc-label hidden-xs">
+								Information<br /> based on COC
+							</span>
+							<span class="nav-button-boc-label visible-xs-inline ng-cloak">COC</span>
+						</a>
+					</span>
+					<span>
+						<precinct-searcher></precinct-searcher>
+					</span>
+				</div>
+
+	<div class="text-right col-xs-12 col-md-5 no-side-padding">
+
+
+
+				<div class="site-information pull-right hidden-xs">
+					<span class="site-information-icon hidden-xs"></span>
+					<div class="site-information-content-wrapper">
+						<ul class="site-information-content">
+              <li><p>This web site shows the precinct results and canvassing results for the 2016 National and Local Elections <b>as electronically transmitted</b> from the vote counting machines (VCM) and from the Consolidation and Canvassing System (CCS) of the different Boards of Canvassers (BOCs).</p></li>
+              <li><p>Every time an ER (Election Returns) or CoC (Certificate of Canvass) is electronically received at the COMELEC Central Server, this site will automatically update the information shown accordingly.</p></li>
+              <li><p>This site <b><u>does not</u></b> compute results, but only <b><u>displays AS RECEIVED</u></b> the information that were electronically transmitted to the COMELEC Central Server from the VCMs and from the CCS machines as officially counted and canvassed. <b><u>There will be no running totals that will be generated or computed based on what has been received so far.</u></b></p></li>
+              <li><p>To view the election results for a specific location, please select a specific area on the map or choose from the list of regions, provinces, cities/municipalities, barangays, and precincts on the left side of the page.</p></li>
+              <li><p>For any related queries, please send an email to: <a href="/cdn-cgi/l/email-protection#d5e7e5e4e3bbb9b0fba7b0a6a0b9a1a695b6bab8b0b9b0b6fbb2baa3fba5bd" class="contact-link" shape="rect"><span class="__cf_email__" data-cfemail="eddfdddcdb838188c39f889e9881999ead8e82808881888ec38a829bc39d85">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></a></p></li>
+			  <li><p>The information shown in this site is updated every 20 minutes or less according network traffic.</p></li>
+						</ul>
+					</div>
+				</div>
+				<div class="site-information-xs pull-right visible-xs-inline-block">
+					<span class="site-information-icon" ng-click="showInfo = !showInfo" ng-class="{&#39;active&#39;: showInfo}"></span>
+					<div class="site-information-content-wrapper ng-cloak" ng-show="showInfo">
+						<ul class="site-information-content">
+              <li><p>This web site shows the precinct results and canvassing results for the 2016 National and Local Elections <b>as electronically transmitted</b> from the vote counting machines (VCM) and from the Consolidation and Canvassing System (CCS) of the different Boards of Canvassers (BOCs).</p></li>
+              <li><p>Every time an ER (Election Returns) or CoC (Certificate of Canvass) is electronically received at the COMELEC Central Server, this site will automatically update the information shown accordingly.</p></li>
+              <li><p>This site <b><u>does not</u></b> compute results, but only <b><u>displays AS RECEIVED</u></b> the information that were electronically transmitted to the COMELEC Central Server from the VCMs and from the CCS machines as officially counted and canvassed. <b><u>There will be no running totals that will be generated or computed based on what has been received so far.</u></b></p></li>
+              <li><p>To view the election results for a specific location, please select a specific area on the map or choose from the list of regions, provinces, cities/municipalities, barangays, and precincts on the left side of the page.</p></li>
+              <li><p>For any related queries, please send an email to: <a href="/cdn-cgi/l/email-protection#11232120277f7d743f637462647d656251727e7c747d74723f767e673f6179" class="contact-link" shape="rect"><span class="__cf_email__" data-cfemail="40727071762e2c256e322533352c343300232f2d252c25236e272f366e3028">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></a></p></li>
+			  <li><p>The information shown in this site is updated every 20 minutes or less according network traffic.</p></li>
+						</ul>
+					</div>
+				</div>
+
+				<span class="site-map-icon pull-right">
+						<a class="site-map-btn" ui-sref="sitemap" ui-sref-active="active" shape="rect">
+							<img alt="Site map" title="{{&#39;nav.button.sitemap.label&#39; | translate}}" src="styles/images/sitemap_icon.png" />
+						</a>
+				</span>
+				
+				<div class="update-info text-right pull-right" style="display:inline-block;">
+					<span class="report-update">
+						<span class="report-date hidden-xs">Last update date and time:  16 May 2016</span>
+						<span class="report-date visible-xs-inline">Updated: 16 May 2016</span>
+						<span class="report-time">7:13 am</span><span> (GMT +08:00)</span>
+					</span>
+				</div>
+
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	
+	<div class="content-wrapper">
+		<div id="container" class="container-fluid" style="background-color: #FFF;">
+			<ui-view></ui-view>
+			<footer>
+				<div class="container-fluid footer" style="padding-right:15px;text-align:right;">
+					<span class="ng-cloak">version: 0.20160503</span>
+				</div>
+			</footer>
+	
+		<div class="navigation-column-filler hidden-xs ng-cloak" ng-show="currentAction == &#39;er&#39; || currentAction == &#39;coc&#39;">
+			<div class="text-left col-xs-12 col-md-3 navigation-column "></div>
+			</div>
+		</div>
+	
+	</div>
+
+
+	<script src="scripts/jquery.min.js" xml:space="preserve"></script>
+	<script src="scripts/bootstrap.min.js" xml:space="preserve"></script>
+	<script src="scripts/d3.v3.min.js" charset="utf-8" xml:space="preserve"></script>
+	<script src="scripts/topojson.v1.min.js" charset="utf-8" xml:space="preserve"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js" xml:space="preserve"></script>
+	<script src="i18n/messages.js" xml:space="preserve"></script>
+	<script src="scripts/angular-translate.min.js" xml:space="preserve"></script>
+	<script src="scripts/angular-ui-router.min.js" xml:space="preserve"></script>
+	<script src="scripts/dashboard/dashboardTableCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/dashboard/dashboardCtrlr.js" xml:space="preserve"></script>
+
+	<script src="scripts/results/cocCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/results/erCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/results/resultsCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/statistics/statisticsCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/contests/contestsCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/navigation/navigationFilterCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/map/mapCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/search/searchCtrlr.js" xml:space="preserve"></script>
+	<script src="scripts/psPhlCtrlr2.js" xml:space="preserve"></script>
+	<script src="scripts/moment.js" xml:space="preserve"></script>
+	<script src="scripts/smtt.js" xml:space="preserve"></script>
+
+	<script xml:space="preserve">
+		$(document).ready(function(){
+//			$('.contest-results-info:visible').hide();
+//			$('.contest-title').first().click();
+//			initRegionSuggestions();
+		});
+
+	</script>
+
+	<script xml:space="preserve">
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-75304701-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+
+
+<script type="text/javascript">/* <![CDATA[ */(function(d,s,a,i,j,r,l,m,t){try{l=d.getElementsByTagName('a');t=d.createElement('textarea');for(i=0;l.length-i;i++){try{a=l[i].href;s=a.indexOf('/cdn-cgi/l/email-protection');m=a.length;if(a&&s>-1&&m>28){j=28+s;s='';if(j<m){r='0x'+a.substr(j,2)|0;for(j+=2;j<m&&a.charAt(j)!='X';j+=2)s+='%'+('0'+('0x'+a.substr(j,2)^r).toString(16)).slice(-2);j++;s=decodeURIComponent(s)+a.substr(j,m-j)}t.innerHTML=s.replace(/</g,'&lt;').replace(/>/g,'&gt;');l[i].href='mailto:'+t.value}}catch(e){}}}catch(e){}})(document);/* ]]> */</script></body>
+</html>

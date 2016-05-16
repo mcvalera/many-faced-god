@@ -6,41 +6,41 @@ var _ = require('lodash');
 var knex = require('knex')(require('./knexfile.js'));
 
 var headers = {
-	cookie: '__cfduid=d1effd6900a24380b69c89e7b32b97df01463208405; _ga=GA1.2.1085818165.1463208410; cf_clearance=d7ff36dbb1ed6d6dc9c120bd65267878864dc308-1463300001-3600', 
-	'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
-	accept: 'application/json, text/plain, */*'
+  cookie: '__cfduid=d1effd6900a24380b69c89e7b32b97df01463208405; cf_clearance=c45fe265218e3c48211614db8b97cba0ea375593-1463363485-3600; _ga=GA1.2.1085818165.1463208410', 
+  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
+  accept: 'application/json, text/plain, */*'
 }
 var baseUrl = 'https://www.pilipinaselectionresults2016.com/';
 var regionQ = async.queue(function(url, callback) {
 
-	console.log(url);
+  console.log(url);
 
-	request.get({ 
-		url: baseUrl + url,
-		json: true,
-		headers: headers
-	}, function(error, response, body) {
+  request.get({ 
+    url: baseUrl + url,
+    json: true,
+    headers: headers
+  }, function(error, response, body) {
 
     if (response.statusCode !== 200) {
       console.log('error');
       return callback();
     }
 
-		var regions = body.subRegions;
+    var regions = body.subRegions;
 
-		if (_.isEmpty(regions)) {
-			var contests = body.contests;
-			for (var i = 0; i < 3; i++) { // up to senators
-				votesQ.push({ 
-          url: contests[i].url,
-          regionId: body.customCode
-        });
-			}
-		} else {
-			for (var key in  regions) {
-				regionQ.unshift(regions[key].url);
-			}
-		}
+    if (_.isEmpty(regions)) {
+      // var contests = body.contests;
+      // for (var i = 0; i < 3; i++) { // up to senators
+      //   votesQ.push({ 
+      //     url: contests[i].url,
+      //     regionId: body.customCode
+      //   });
+      // }
+    } else {
+      for (var key in  regions) {
+        regionQ.push(regions[key].url);
+      }
+    }
 
     knex('regions').insert({
       id: body.customCode,
@@ -51,9 +51,9 @@ var regionQ = async.queue(function(url, callback) {
       callback();
     }).catch(callback);
 
-	});
+  });
 
-});
+}, 5);
 
 regionQ.push('data/regions/root.json');
 
@@ -61,18 +61,18 @@ var votesQ = async.queue(function(obj, callback) {
   var url = obj.url;
   var regionId = obj.regionId;
 
-	console.log(url);
+  console.log(url);
 
-	request.get({ 
-		url: baseUrl + url,
-		json: true,
-		headers: headers
-	}, function(error, response, body) {
+  request.get({ 
+    url: baseUrl + url,
+    json: true,
+    headers: headers
+  }, function(error, response, body) {
 
     if (!body.results) { return callback() }
 
     knex('votes').insert(
-  	  body.results.map(function(result) {
+      body.results.map(function(result) {
         return {
           candidate_id: result.canCode,
           percentage: result.percentage,
@@ -96,6 +96,6 @@ var votesQ = async.queue(function(obj, callback) {
       })
     });
 
-	});
+  });
 
 });
